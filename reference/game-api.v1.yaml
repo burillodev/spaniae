@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: game api
+  version: '1.0'
+  description: API for manage all processes of the game
+  contact:
+    name: BurilloDev
+    url: 'https://burillodev.github.io'
+    email: burillodev@gmail.com
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/games/{gameid}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+              examples:
+                example-1:
+                  value:
+                    id: ajasosp1kid03
+                    name: test-game
+                    creation: '2019-08-24T14:15:22Z'
+                    status: created
+      operationId: get-games
+      description: List all games available of an specific game
+    post:
+      summary: ''
+      operationId: post-games
+      responses:
+        '200':
+          description: OK
+      description: Create a new game for starting a new match of the game
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+    parameters:
+      - schema:
+          type: string
+        name: gameid
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-games-gameid
+      responses:
+        '200':
+          description: OK
+      description: Updates or creates a new game
+    patch:
+      summary: ''
+      operationId: patch-games-gameid
+      responses:
+        '200':
+          description: OK
+      description: Update a specific value of a single or multiple games
+    delete:
+      summary: ''
+      operationId: delete-games-gameid
+      responses:
+        '200':
+          description: OK
+      description: Delete a specific game
+components:
+  schemas:
+    Game:
+      title: Game
+      type: object
+      x-examples:
+        example-1:
+          id: string
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        creation:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - created
+            - started
+            - finished
+      required:
+        - id
+        - name
+        - creation
+        - status
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
+    apiKey:
+      name: API Key
+      type: apiKey
+      in: header
+security:
+  - oauth2: []
+  - apiKey: []

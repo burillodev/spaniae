@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: player-api.v1
+  version: '1.0'
+  description: API for managing players of the game. Each player in a game has to have a different color
+  contact:
+    name: BurilloDev
+    url: 'https://burillodev.github.io'
+    email: burillodev@gmail.com
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/players/{playerid}':
+    parameters:
+      - schema:
+          type: string
+        name: playerid
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-players-playerid
+      description: List a player or a collection of players
+components:
+  schemas:
+    Player:
+      title: Player
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        color:
+          type: string
+          enum:
+            - red
+            - green
+            - blue
+            - yellow
+      required:
+        - id
+        - name
+        - color
+  securitySchemes:
+    apiKey:
+      name: API Key
+      type: apiKey
+      in: header
+security:
+  - apiKey: []
