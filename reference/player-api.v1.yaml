@@ -25,6 +25,40 @@ paths:
           description: OK
       operationId: get-players-playerid
       description: List a player or a collection of players
+    post:
+      summary: ''
+      operationId: post-players-playerid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+      description: Create a new Player
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Player'
+    put:
+      summary: ''
+      operationId: put-players-playerid
+      responses:
+        '200':
+          description: OK
+    patch:
+      summary: ''
+      operationId: patch-players-playerid
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: ''
+      operationId: delete-players-playerid
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     Player:

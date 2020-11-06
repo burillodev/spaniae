@@ -22,12 +22,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Game'
               examples:
-                example-1:
+                example-2:
                   value:
-                    id: ajasosp1kid03
-                    name: test-game
+                    id: string
+                    name: string
                     creation: '2019-08-24T14:15:22Z'
                     status: created
+                    players:
+                      - string
+                    createdBy: string
       operationId: get-games
       description: List all games available of an specific game
     post:
@@ -76,8 +79,14 @@ components:
       title: Game
       type: object
       x-examples:
-        example-1:
+        example:
           id: string
+          name: string
+          creation: '2019-08-24T14:15:22Z'
+          status: created
+          players:
+            - string
+          createdBy: string
       properties:
         id:
           type: string
@@ -92,11 +101,22 @@ components:
             - created
             - started
             - finished
+        players:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: string
+        createdBy:
+          type: string
       required:
         - id
         - name
         - creation
         - status
+        - players
+        - createdBy
+      description: Model to represent a game snapshot
   securitySchemes:
     oauth2:
       type: oauth2
